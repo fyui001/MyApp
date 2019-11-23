@@ -17,7 +17,7 @@ class ImasVoiceActorShikoLists extends Model
      * @return bool
      */
     public function get(int $usrId) {
-        return $this->select('shiko_list')->where(['owner_id' => $usrId]);
+        return $this->select('shiko_list')->where(['owner_id' => $usrId])->get();
     }
 
 
