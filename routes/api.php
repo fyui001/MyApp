@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('shiko')->group(function() {
+   Route::get('/get', 'ImasVoiceActorShikoCheckListController@index');
+   Route::post('/create', 'ImasVoiceActorShikoCheckListController@create');
+   Route::post('update', 'ImasVoiceActorShikoCheckListController@store');
+});
