@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('shiko')->group(function() {
-   Route::get('/get', 'ImasVoiceActorShikoCheckListController@index');
-   Route::post('/create', 'ImasVoiceActorShikoCheckListController@create');
-   Route::post('update', 'ImasVoiceActorShikoCheckListController@store');
+   Route::get('/get', 'ImasVoiceActorShikoCheckListController@index')->middleware('cors');
+   Route::post('/create', 'ImasVoiceActorShikoCheckListController@create')->middleware('cors');
+   Route::post('update', 'ImasVoiceActorShikoCheckListController@store')->middleware('cors');
 });
