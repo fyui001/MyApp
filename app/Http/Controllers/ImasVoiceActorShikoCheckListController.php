@@ -122,11 +122,12 @@ class ImasVoiceActorShikoCheckListController extends Controller
             ];
         }
 
-        if (isset($request['usrToken']) || $this->validateUserToken($request['usrToken']) ) {
-            $shikoList = $request['shikoList'];
-            $usrId = $shikoUsers->findUserId($request['usrToken'])[0]['user_id'];
+        try {
 
-            try {
+            if (isset($request['usrToken']) && $this->validateUserToken($request['usrToken']) ) {
+
+                $shikoList = $request['shikoList'];
+                $usrId = $shikoUsers->findUserId($request['usrToken'])[0]['user_id'];
 
                 $shiko->updateShikoList($usrId, $shikoList);
                 return [
@@ -134,17 +135,17 @@ class ImasVoiceActorShikoCheckListController extends Controller
                     'msg' => '更新に成功しました'
                 ];
 
-            } catch(\Exception $e) {
-
-                return [
-                  'status' => false,
-                  'msg' => '更新に失敗しました。'
-                ];
-
+            } else {
+                throw new \Exception();
             }
 
-        } else {
-            $this->create($request);
+        } catch(\Exception $e) {
+
+            return [
+              'status' => false,
+              'msg' => '更新に失敗しました。'
+            ];
+
         }
 
     }
