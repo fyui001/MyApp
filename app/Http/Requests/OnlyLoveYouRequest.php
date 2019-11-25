@@ -24,8 +24,8 @@ class OnlyLoveYouRequest extends FormRequest
     public function rules()
     {
         return [
-            'page' => 'require|integer',
-            'searchKeyword' => 'sometimes|string|size:256'
+            'page' => 'required|integer',
+            'searchKeyword' => 'sometimes|string|max:256'
         ];
     }
 }
