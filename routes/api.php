@@ -17,6 +17,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/* お前しか好きじゃない */
+//Route::resource('only_love_you', 'OnlyLoveYouController')->middleware('cors');
+Route::prefix('only_love_you')->group(function() {
+    Route::get('/', 'OnlyLoveYouController@index')->middleware('cors');
+    Route::get('search', 'OnlyLoveYouController@show')->middleware('cors');
+});
+
+/* アイマス声優シコチェックリスト */
 Route::prefix('shiko')->group(function() {
    Route::get('/get', 'ImasVoiceActorShikoCheckListController@index')->middleware('cors');
    Route::post('/create', 'ImasVoiceActorShikoCheckListController@create')->middleware('cors');
