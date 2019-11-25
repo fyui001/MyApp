@@ -35,7 +35,7 @@ class OnlyLoveYou extends Model
                     ->where('UserName', 'like', "%{$keyword}%")
                     ->where('Love', 'like', "%{$keyword}%")
                     ->where('Guild', 'like', "%{$keyword}%")
-                    ->oderBy('id', 'desc')->paginate(20);
+                    ->orderBy('id', 'desc')->paginate(20);
     }
 
 }
