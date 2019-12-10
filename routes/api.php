@@ -18,10 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 /* お前しか好きじゃない */
-//Route::resource('only_love_you', 'OnlyLoveYouController')->middleware('cors');
 Route::prefix('only_love_you')->group(function() {
-    Route::get('/', 'OnlyLoveYouController@index')->middleware('cors');
-    Route::get('search', 'OnlyLoveYouController@show')->middleware('cors');
+    Route::get('/get', 'OnlyLoveYouController@index')->middleware('cors');
+    Route::get('/search', 'OnlyLoveYouController@show')->middleware('cors');
 });
 
 /* アイマス声優シコチェックリスト */
