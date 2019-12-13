@@ -49,8 +49,8 @@ class OnlyLoveYouController extends Controller
             ];
         } else {
             return [
-                'status' => true,
-                'resultData' => $OnlyLoveYou->get()
+                'status' => false,
+                'msg' => '何も見つかりませんでした。'
             ];
         }
     }
