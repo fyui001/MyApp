@@ -38,9 +38,17 @@ class ImasVoiceActorShikoCheckListController extends Controller
         $shikoList = new ImasVoiceActorShikoLists;
         $voiceActors = $imasVoiceActors->getVoiceActors();
 
+        if ($voiceActors->isNOtEmpty()) {
+            return [
+                'msg' => '声優の取得に失敗しました',
+                'status' => false
+            ];
+        }
+
         if ( !isset($request['usrToken']) || !$this->validateUserToken($request['usrToken']) ) {
             return [
-                'voiceActors' => $voiceActors
+                'voiceActors' => $voiceActors,
+                'status' => true
             ];
         }
 
@@ -50,11 +58,13 @@ class ImasVoiceActorShikoCheckListController extends Controller
         if ($shikoListData->isNotEmpty()) {
             return [
                 'voiceActors' => $voiceActors,
-                'shikoList' => $shikoListData
+                'shikoList' => $shikoListData,
+                'status' => true
             ];
         } else {
             return [
-                'voiceActors' => $voiceActors
+                'voiceActors' => $voiceActors,
+                'status' => true
             ];
         }
     }
