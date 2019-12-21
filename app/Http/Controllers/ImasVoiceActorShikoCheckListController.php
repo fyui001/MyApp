@@ -38,7 +38,7 @@ class ImasVoiceActorShikoCheckListController extends Controller
         $shikoList = new ImasVoiceActorShikoLists;
         $voiceActors = $imasVoiceActors->getVoiceActors();
 
-        if ($voiceActors->isNOtEmpty()) {
+        if (!$voiceActors->isNotEmpty()) {
             return [
                 'msg' => '声優の取得に失敗しました',
                 'status' => false
