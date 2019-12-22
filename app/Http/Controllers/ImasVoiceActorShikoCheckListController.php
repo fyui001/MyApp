@@ -137,9 +137,9 @@ class ImasVoiceActorShikoCheckListController extends Controller
             if (isset($request['usrToken']) && $this->validateUserToken($request['usrToken']) ) {
 
                 $shikoList = $request['shikoList'];
-                $usrId = $shikoUsers->findUserId($request['usrToken'])[0]['user_id'];
+                $usrId = $shikoUsers->findUserId($request['usrToken']);
 
-                $shiko->updateShikoList($usrId, $shikoList);
+                $shiko->updateShikoList($usrId[0]['user_id'], $shikoList);
                 return [
                     'status' => true,
                     'msg' => '更新に成功しました'
