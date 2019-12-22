@@ -24,7 +24,7 @@ class ShikoCheckListRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'sometimes|string|size:64',
+            'usrToken' => 'sometimes|string|size:64',
             'shikoList' => 'sometimes|json'
         ];
     }
