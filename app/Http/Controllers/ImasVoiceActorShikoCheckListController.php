@@ -45,7 +45,7 @@ class ImasVoiceActorShikoCheckListController extends Controller
             ];
         }
 
-        if ( !isset($request['usrToken']) || !$this->validateUserToken($request['usrToken']) ) {
+        if ( !isset($request['usrToken']) ) {
             return [
                 'voiceActors' => $voiceActors,
                 'status' => true
@@ -71,11 +71,11 @@ class ImasVoiceActorShikoCheckListController extends Controller
 
 
     /**
-     * 新しくシコチェックリストを保存する
-     *
-     * @param ShikoCheckListRequest $request
-     * @return array
-     */
+    * 新しくシコチェックリストを保存する
+    *
+    * @param ShikoCheckListRequest $request
+    * @return array
+    */
     public function create(ShikoCheckListRequest $request) {
 
         $shikoUsers = new ImasVoiceActorShikoUsers;
@@ -89,10 +89,10 @@ class ImasVoiceActorShikoCheckListController extends Controller
 
         if ( $shikoUsers->create($usrToken) && isset($request['shikoList']) ) {
 
-            $usrId = $shikoUsers->findUserId($usrToken)[0]['user_id'];
+            $usrId = $shikoUsers->findUserId($usrToken);
             try {
 
-                $shikoList->create($usrId, $request['shikoList']);
+                $shikoList->create($usrId[0]['user_id'], $request['shikoList']);
                 return [
                   'status' => true,
                   'usrToken' => $usrToken
