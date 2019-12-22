@@ -63,8 +63,8 @@ class ImasVoiceActorShikoCheckListController extends Controller
             ];
         } else {
             return [
-                'voiceActors' => $voiceActors,
-                'status' => true
+                'msg' => '何もみつかりません',
+                'status' => false
             ];
         }
     }
