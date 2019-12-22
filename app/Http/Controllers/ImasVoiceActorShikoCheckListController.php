@@ -52,10 +52,10 @@ class ImasVoiceActorShikoCheckListController extends Controller
             ];
         }
 
-        $usrId = $shikoUsers->findUserId($request['usrToken'])[0]['user_id'];
-        $shikoListData = $shikoList->get($usrId);
+        $usrId = $shikoUsers->findUserId($request['usrToken']);
 
-        if ($shikoListData->isNotEmpty()) {
+        if ($usrId->isNotEmpty()) {
+            $shikoListData = $shikoList->get($usrId[0]['user_id']);
             return [
                 'voiceActors' => $voiceActors,
                 'shikoList' => $shikoListData,
