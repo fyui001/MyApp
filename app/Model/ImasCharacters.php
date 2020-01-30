@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImasCharacters extends Model
 {
-    protected $table = 'imas_voice_actors';
+    protected $table = 'imas_characters';
     protected $primaryKey = 'id';
 
     /**
