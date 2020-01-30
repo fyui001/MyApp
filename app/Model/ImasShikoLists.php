@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ImasVoiceActorShikoLists extends Model
+class ImasShikoLists extends Model
 {
     protected $table = 'shiko';
     protected $primaryKey = 'id';

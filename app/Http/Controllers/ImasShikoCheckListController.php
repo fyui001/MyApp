@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Model\ImasVoiceActors;
-use App\Model\ImasVoiceActorShikoUsers;
-use App\Model\ImasVoiceActorShikoLists;
+use App\Model\ImasCharacters;
+use App\Model\ImasShikoUsers;
+use App\Model\ImasShikoLists;
 use App\Http\Requests\ShikoCheckListRequest;
 use App\Library\Libraries;
 
-class ImasVoiceActorShikoCheckListController extends Controller
+class ImasShikoCheckListController extends Controller
 {
 
     /**
@@ -20,7 +19,7 @@ class ImasVoiceActorShikoCheckListController extends Controller
      * @return bool
      */
     protected function validateUserToken(string $userToken) {
-        $users = new ImasVoiceActorShikoUsers;
+        $users = new ImasShikoUsers;
         return $users->findUserId($userToken) ? true : false;
     }
 
@@ -33,9 +32,9 @@ class ImasVoiceActorShikoCheckListController extends Controller
      * @return array
      */
     public function index(ShikoCheckListRequest $request) {
-        $imasVoiceActors = new ImasVoiceActors;
-        $shikoUsers = new ImasVoiceActorShikoUsers;
-        $shikoList = new ImasVoiceActorShikoLists;
+        $imasVoiceActors = new ImasCharacters;
+        $shikoUsers = new ImasShikoUsers;
+        $shikoList = new ImasShikoLists;
         $voiceActors = $imasVoiceActors->getVoiceActors();
 
         if ( !isset($request['usrToken']) || !$this->validateUserToken($request['usrToken']) ) {
@@ -68,8 +67,8 @@ class ImasVoiceActorShikoCheckListController extends Controller
      */
     public function create(ShikoCheckListRequest $request) {
 
-        $shikoUsers = new ImasVoiceActorShikoUsers;
-        $shikoList = new ImasVoiceActorShikoLists;
+        $shikoUsers = new ImasShikoUsers;
+        $shikoList = new ImasShikoLists;
         $libraries = new Libraries;
 
         $usrToken = $libraries->tokenGen(64);
@@ -112,8 +111,8 @@ class ImasVoiceActorShikoCheckListController extends Controller
      * @return array
      */
     public function store(ShikoCheckListRequest $request) {
-        $shikoUsers = new ImasVoiceActorShikoUsers;
-        $shiko = new ImasVoiceActorShikoLists;
+        $shikoUsers = new ImasShikoUsers;
+        $shiko = new ImasShikoLists;
 
         if ( !isset($request['shikoList']) ) {
             return [
