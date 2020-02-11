@@ -81,7 +81,7 @@ class ImasShikoCheckListController extends Controller
             $usrId = $shikoUsers->findUserId($usrToken)[0]['user_id'];
             try {
 
-                $shikoList->create($usrId, $request['shikoList']);
+                $shikoList->create($usrId, $request['shikoList'], $request['voice_actor_flg']);
                 return [
                   'status' => true,
                   'usrToken' => $usrToken

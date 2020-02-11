@@ -28,8 +28,8 @@ class ImasShikoLists extends Model
      * @param string $shikoCheckList
      * @return bool
      */
-    public function create(int $usrId, string $shikoList) {
-        return $this->insert(['owner_id' => $usrId, 'shiko_list' => $shikoList]) ? true: false;
+    public function create(int $usrId, string $shikoList, int $voice_actor_flg) {
+        return $this->insert(['owner_id' => $usrId, 'shiko_list' => $shikoList, 'voice_actor_flg' => $voice_actor_flg]) ? true: false;
     }
 
 

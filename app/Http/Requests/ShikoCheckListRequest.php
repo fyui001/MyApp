@@ -25,7 +25,8 @@ class ShikoCheckListRequest extends FormRequest
     {
         return [
             'id' => 'sometimes|string|size:64',
-            'shikoList' => 'sometimes|json'
+            'shikoList' => 'sometimes|json',
+            'voice_actor_flg' => 'sometimes|integer|size:1'
         ];
     }
 }
