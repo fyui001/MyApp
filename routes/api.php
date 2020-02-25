@@ -26,6 +26,7 @@ Route::prefix('only_love_you')->group(function() {
 /* アイマス声優シコチェックリスト */
 Route::prefix('shiko')->group(function() {
    Route::get('/get', 'ImasShikoCheckListController@index')->middleware('cors');
+   Route::get('/show', 'IMasShikoCheckListController@show')->middleware('cors');
    Route::post('/create', 'ImasShikoCheckListController@create')->middleware('cors');
    Route::post('/update', 'ImasShikoCheckListController@store')->middleware('cors');
 });

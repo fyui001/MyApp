@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImasShikoLists extends Model
 {
-    protected $table = 'shiko';
+    protected $table = 'shiko_list';
     protected $primaryKey = 'id';
 
 
@@ -17,7 +17,7 @@ class ImasShikoLists extends Model
      * @return bool
      */
     public function get(int $usrId) {
-        return $this->select('shiko_list')->where(['owner_id' => $usrId])->get();
+        return $this->select('shiko_list', 'voice_actor_flg')->where(['owner_id' => $usrId])->get();
     }
 
 

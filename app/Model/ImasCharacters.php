@@ -14,7 +14,7 @@ class ImasCharacters extends Model
      *
      * @return bool
      */
-    public function getVoiceActors() {
+    public function getImasCharacters() {
         return $this->get();
     }
 }
