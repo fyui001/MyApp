@@ -18,17 +18,17 @@ class OnlyLoveYouController extends Controller
         $OnlyLoveYou = new OnlyLoveYou;
         $resultDatas = $OnlyLoveYou->get();
 
-        if ( $resultDatas->isNotEmpty() ) {
-            return [
-                'status' => true,
-                'resultData' => $resultDatas
-                ];
-        } else {
+        if ( !$resultDatas->isNotEmpty() ) {
             return [
                 'status' => false,
                 'msg' => 'エラーが発生しました'
             ];
         }
+
+        return [
+            'status' => true,
+            'resultData' => $resultDatas
+        ];
 
     }
 
@@ -44,15 +44,16 @@ class OnlyLoveYouController extends Controller
 
         if ( $searchResult->isNotEmpty() ) {
             return [
-                'status' => true,
-                'resultData' => $searchResult
-            ];
-        } else {
-            return [
                 'status' => false,
                 'msg' => '何も見つかりませんでした。'
             ];
         }
+
+        return [
+            'status' => true,
+            'resultData' => $searchResult
+        ];
+
     }
 
 }
