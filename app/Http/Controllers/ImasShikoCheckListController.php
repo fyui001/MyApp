@@ -46,16 +46,17 @@ class ImasShikoCheckListController extends Controller
         $usrId = $shikoUsers->findUserId($request['usrToken'])[0]['user_id'];
         $shikoListData = $shikoList->get($usrId);
 
-        if ($shikoListData->isNotEmpty()) {
-            return [
-                'imasCharacters' => $imasCharacters,
-                'shikoList' => $shikoListData
-            ];
-        } else {
+        if (!$shikoListData->isNotEmpty()) {
             return [
                 'imasCharacters' => $imasCharacters
             ];
         }
+
+        return [
+            'imasCharacters' => $imasCharacters,
+            'shikoList' => $shikoListData
+        ];
+
     }
 
     public function show(ShikoCheckListRequest $request) {
@@ -103,31 +104,22 @@ class ImasShikoCheckListController extends Controller
             $usrToken = $libraries->tokenGen(64);
         }
 
-        if ( $shikoUsers->create($usrToken) && isset($request['shikoList']) ) {
-
-            $usrId = $shikoUsers->findUserId($usrToken);
-            try {
-
-                $shikoList->create($usrId[0]['user_id'], $request['shikoList'], $request['voice_actor_flg']);
-                return [
-                  'status' => true,
-                  'usrToken' => $usrToken
-                ];
-
-            } catch(\Exception $e) {
-
-                return [
-                  'status' => false,
-                  'msg' => 'シコチェックリストの保存に失敗しました'
-                ];
-
+        try {
+            if ( !$shikoUsers->create($usrToken) && !isset($request['shikoList']) ) {
+                throw new \Exception();
             }
+            $usrId = $shikoUsers->findUserId($usrToken);
+            $shikoList->create($usrId[0]['user_id'], $request['shikoList'], $request['voice_actor_flg']);
+            return [
+              'status' => true,
+              'usrToken' => $usrToken
+            ];
+        } catch(\Exception $e) {
+            return [
+              'status' => false,
+              'msg' => 'シコチェックリストの保存に失敗しました'
+            ];
         }
-
-        return [
-            'status' => false,
-            'msg' => 'シコチェックリストの保存に失敗しました'
-        ];
 
     }
 
@@ -150,31 +142,26 @@ class ImasShikoCheckListController extends Controller
 
         try {
 
-            if (isset($request['usrToken']) && $this->validateUserToken($request['usrToken']) ) {
-
-                $shikoList = $request['shikoList'];
-                $usrId = $shikoUsers->findUserId($request['usrToken']);
-
-                $shiko->updateShikoList($usrId[0]['user_id'], $shikoList);
-                return [
-                    'status' => true,
-                    'msg' => '更新に成功しました'
-                ];
-
-            } else {
+            if (!isset($request['usrToken']) && !$this->validateUserToken($request['usrToken']) ) {
                 throw new \Exception();
             }
 
-        } catch(\Exception $e) {
+            $shikoList = $request['shikoList'];
+            $usrId = $shikoUsers->findUserId($request['usrToken']);
+            $shiko->updateShikoList($usrId[0]['user_id'], $shikoList);
 
+            return [
+                'status' => true,
+                'msg' => '更新に成功しました'
+            ];
+
+        } catch(\Exception $e) {
             return [
               'status' => false,
               'msg' => '更新に失敗しました。'
             ];
-
         }
 
     }
-
 
 }
