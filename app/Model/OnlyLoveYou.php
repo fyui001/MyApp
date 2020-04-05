@@ -16,7 +16,7 @@ class OnlyLoveYou extends Model
     */
     public function get() {
 
-        return $this->select('UserName', 'Content', 'Love', 'Guild', 'create_at')
+        return $this->select('user', 'content', 'love', 'guild', 'created_at')
                     ->where(['del_flg' => 0])
                     ->orderBy('id', 'desc')
                     ->paginate(20);
@@ -31,7 +31,7 @@ class OnlyLoveYou extends Model
      */
     public function search(string $keyword) {
         $this->keyword = $keyword;
-        return $this->select('UserName', 'Content', 'Love', 'Guild', 'create_at')
+        return $this->select('user', 'content', 'love', 'guild', 'created_at')
                     ->where(['del_flg' => 0])
                     ->where(function($query) {
                         $query->where('UserName', 'like', "%{$this->keyword}%")
