@@ -18,7 +18,7 @@ class CreateMasturbationLogTable extends Migration
             $table->string('user', 255);
             $table->string('fap_material', 255);
             $table->string('guild', 255);
-            $table->timestamps()->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
