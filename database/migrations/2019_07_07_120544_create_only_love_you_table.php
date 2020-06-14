@@ -18,6 +18,7 @@ class CreateOnlyLoveYouTable extends Migration
             $table->string('User', '255');
             $table->string('Content', '128');
             $table->string('Love', '128');
+            $table->string('Guild', '255');
             $table->date('create_at');
         });
     }
