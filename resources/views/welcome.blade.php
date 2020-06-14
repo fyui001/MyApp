@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    もう疲れた
+                    にゃーん
                 </div>
 
                 <div class="links">

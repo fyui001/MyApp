@@ -18,6 +18,7 @@ class CreateVoiceActorOwnershipTable extends Migration {
 			$table->string('UserName', 32)->default('');
 			$table->string('Content')->default('');
 			$table->string('ClaimOwnership')->default('');
+			$table->string('Guild', 255);
 			$table->timestamp('create_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 		});
 	}

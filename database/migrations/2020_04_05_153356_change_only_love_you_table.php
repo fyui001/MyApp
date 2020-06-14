@@ -14,7 +14,7 @@ class ChangeOnlyLoveYouTable extends Migration
     public function up()
     {
         Schema::table('only_love_you', function (Blueprint $table) {
-            $table->renameColumn('UserName', 'user');
+            $table->renameColumn('User', 'user');
             $table->renameColumn('Content', 'content');
             $table->renameColumn('Love', 'love');
             $table->renameColumn('Guild', 'guild');
