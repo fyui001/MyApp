@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\OnlyLoveYou;
+use App\Models\OnlyLoveYou;
+use App\Services\Interfaces\OnlyLoveYouServiceInterface;
 use App\Http\Requests\OnlyLoveYouRequest;
 
 class OnlyLoveYouController extends Controller
 {
+
+    protected $onlyLoveYouService;
+
+    public function __construct(OnlyLoveYouServiceInterface $onlyLoveYouService) {
+
+        $this->onlyLoveYouService = $onlyLoveYouService;
+
+    }
 
     /**
     * お前しか好きじゃない一覧取得
@@ -15,10 +24,9 @@ class OnlyLoveYouController extends Controller
     */
     public function index() {
 
-        $OnlyLoveYou = new OnlyLoveYou;
-        $resultDatas = $OnlyLoveYou->get();
+        $resultData = $this->onlyLoveYouService->getOnlyLoveYouList();
 
-        if ( !$resultDatas->isNotEmpty() ) {
+        if ( !$resultData->isNotEmpty() ) {
             return [
                 'status' => false,
                 'msg' => 'エラーが発生しました'
@@ -27,7 +35,7 @@ class OnlyLoveYouController extends Controller
 
         return [
             'status' => true,
-            'resultData' => $resultDatas
+            'resultData' => $resultData
         ];
 
     }
@@ -39,10 +47,10 @@ class OnlyLoveYouController extends Controller
      * @return array
      */
     public function show(OnlyLoveYouRequest $request) {
-        $OnlyLoveYou = new OnlyLoveYou;
-        $searchResult = $OnlyLoveYou->search($request['searchKeyword']);
 
-        if ( $searchResult->isNotEmpty() ) {
+        $searchResult = $this->onlyLoveYouService->getOnlyLoveYouSearchList($request['searchKeyword']);
+
+        if ( !$searchResult->isNotEmpty() ) {
             return [
                 'status' => false,
                 'msg' => '何も見つかりませんでした。'
