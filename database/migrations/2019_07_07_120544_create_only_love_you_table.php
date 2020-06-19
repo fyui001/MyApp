@@ -19,6 +19,7 @@ class CreateOnlyLoveYouTable extends Migration
             $table->string('Content', '128');
             $table->string('Love', '128');
             $table->string('Guild', '255');
+            $table->tinyInteger('del_flg')->default(0);
             $table->date('create_at');
         });
     }

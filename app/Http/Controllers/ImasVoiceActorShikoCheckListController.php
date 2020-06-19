@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\ImasVoiceActors;
-use App\Model\ImasVoiceActorShikoUsers;
-use App\Model\ImasVoiceActorShikoLists;
+use App\Models\ImasVoiceActors;
+use App\Models\ImasVoiceActorShikoUsers;
+use App\Models\ImasVoiceActorShikoLists;
 use App\Http\Requests\ShikoCheckListRequest;
 use App\Library\Libraries;
 
