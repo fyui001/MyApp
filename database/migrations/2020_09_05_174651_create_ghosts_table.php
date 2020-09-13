@@ -15,9 +15,9 @@ class CreateGhostsTable extends Migration
     {
         Schema::create('ghosts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('ghost_id')->unique('UNQ_GHOST_ID')->comment('幽霊屋敷のユーザーID');
+            $table->unsignedInteger('ghost_id')->uniqid('UNQ_GHOST_ID')->comment('幽霊屋敷のユーザーID');
             $table->unsignedBigInteger('gold')->default(9000)->comment('サーバー内通貨(みつは)');
-            $table->boolean('del_flg')->comment('削除フラグ');
+            $table->boolean('del_flg')->default(0)->comment('削除フラグ');
             $table->timestamps();
         });
     }
