@@ -1,7 +1,6 @@
 FROM alpine
 
- ADD ./docker/web/files/default.conf /etc/nginx/conf.d/default.conf
- WORKDIR /var/www/html
+ WORKDIR /code
  ADD . .
 
  COPY ./docker/web/files /root/files
