@@ -2,15 +2,19 @@
 /node_modules
 /public/hot
 /public/storage
+/public/js/app.js
+/public/css/app.css
 /storage/*.key
 /vendor
-/public/files/photos/custom_review/*.*
 .env
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+docker/db/data/*
+!docker/db/data/.gitkeep
+docker-compose.yml
 
 # IDE and editor specific files #
 #################################
