@@ -17,10 +17,6 @@ npm run prod
 # database mingrate
 php artisan migrate
 
-#パーミッションまわり
-chown -R nginx:nginx /var/www/html/storage
-chown -R nginx:nginx /var/www/html/bootstrap/cache
-chmod -R 755 /var/www/html
-chmod -R 766 /var/www/html/storage
-chmod -R 766 /var/www/html/bootstrap/cache
+chmod -R 777 /code/storage
+chmod -R 777 /code/bootstrap
 php-fpm7 && nginx -g "daemon off;"
