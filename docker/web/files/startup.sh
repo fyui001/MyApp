@@ -20,3 +20,4 @@ php artisan migrate
 chmod -R 777 /code/storage
 chmod -R 777 /code/bootstrap
 php-fpm7 && nginx -g "daemon off;"
+echo "I'm ready!"

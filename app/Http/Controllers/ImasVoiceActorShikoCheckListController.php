@@ -58,7 +58,7 @@ class ImasVoiceActorShikoCheckListController extends Controller
             $shikoListData = $shikoList->get($usrId[0]['user_id']);
             return [
                 'voiceActors' => $voiceActors,
-                'shikoList' => $shikoListData,
+                'shikoList' => $shikoListData[0],
                 'status' => true
             ];
         } else {
